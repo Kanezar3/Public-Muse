@@ -16,12 +16,12 @@
 
 - **Case 1 (`PROTECTED_DERIVATIVE_BREACH`)**: Click Case 1 in the Proof Inspector. Highlight the producer's claim (*Ruby Slippers* in the 1900 novel), the immutable Wikipedia `oldid=1384457883` evidence URL, its `evidence_sha256`, the verbatim quote proving MGM's 1939 origin, and the `120 wei` payout credited to the challenger.
 - **Case 2 (`PUBLIC_DOMAIN_VERIFIED`)**: Click Case 2. Highlight the *Silver Shoes* claim verified against Wikipedia `oldid=1378659855`, where the producer keeps the `100 wei` bond and earns the `20 wei` challenge fee.
-- **Case 3 (`REJECTED_VAGUE`) & Case 5 (`INSUFFICIENT_EVIDENCE`)**: Briefly note Gate 1 rejecting subjective claims with a full deposit refund, and Gate 2 rejecting unrelated evidence (the Steam Locomotive article).
+- **Case 3 (`REJECTED_VAGUE`), Case 4 (`PUBLIC_DOMAIN_VERIFIED` / Prompt Injection), & Case 5 (`INSUFFICIENT_EVIDENCE`)**: Show Gate 1 rejecting subjective claims with a full deposit refund, Case 4 defeating an embedded prompt injection in the commit-pinned GitHub raw fixture (`https://raw.githubusercontent.com/Kanezar3/Public-Muse/8812f82f8d492d7f0c7bf406c95147e7e6a17a4a/fixtures/prompt_injection_oz.txt`, tx [`0xfc686466...`](https://explorer-studio.genlayer.com/tx/0xfc686466590bcd1bab82ef3c305fff357316cb5913128f3407f7c51735b9985e)), and Gate 2 rejecting unrelated evidence (the Steam Locomotive article).
 
 ## 1:05 – 1:35 · Live Explorer & CLI Proof Verification
 
 - Click any transaction link in the Proof Inspector (for example, Case 1 challenge [`0x43e13080...`](https://explorer-studio.genlayer.com/tx/0x43e13080ebcb0a549fd981a8c20999bec6c4e1bb0bef2aac8ac16c3d795d56b9)) to open the **GenLayer StudioNet Explorer** showing `FINALIZED` / `MAJORITY_AGREE`.
-- Optionally run in terminal to verify all finalized transactions and live RPC state:
+- Optionally run in terminal to verify all 11 finalized transactions across all 6 cases and live RPC state:
   ```bash
   npm run verify:proof
   ```

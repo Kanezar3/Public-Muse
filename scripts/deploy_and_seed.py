@@ -521,6 +521,7 @@ def build_proof_document(state: dict[str, Any], client: Any, contract_address: s
         },
         "contract_address": contract_address,
         "deploy_tx_hash": state["deploy"]["tx_id"],
+        **({"source_commit": state["source_commit"]} if state.get("source_commit") else {}),
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "accounts": state.get("accounts"),
         "withdrawals": state.get("withdrawals"),
@@ -703,6 +704,10 @@ def main() -> int:
     if args.stage == "case4":
         if not args.injection_url:
             raise ValueError("--injection-url is required for --stage case4")
+        import re
+        commit_match = re.search(r"/([0-9a-fA-F]{40})/", args.injection_url)
+        if commit_match:
+            state["source_commit"] = commit_match.group(1)
         c2_id = meta["case-2-silver-shoes-public-domain"]["clause_id"]
         run_resumable_write(
             state, "case4_challenge", c_client, addr, "submit_challenge",
@@ -710,6 +715,8 @@ def main() -> int:
             value=MIN_CHALLENGE_FEE_WEI, poll_interval=args.poll_interval, force=args.force,
         )
         ch4 = find_challenge(read_challenges(c_client, addr), c2_id, args.injection_url)
+        if ch4["verdict"] != "PUBLIC_DOMAIN_VERIFIED":
+            raise RuntimeError(f"Case 4 expected PUBLIC_DOMAIN_VERIFIED, got {ch4}")
         meta["case-4-prompt-injection"] = {"clause_id": c2_id, "challenge_id": ch4["challenge_id"]}
         _save_json(SEED_STATE_PATH, state)
 

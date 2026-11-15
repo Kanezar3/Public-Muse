@@ -219,6 +219,28 @@
         "AGREE"
       ],
       "done": true
+    },
+    "case4_challenge": {
+      "tx_id": "0xfc686466590bcd1bab82ef3c305fff357316cb5913128f3407f7c51735b9985e",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
     }
   },
   "case_meta": {
@@ -239,6 +261,10 @@
     },
     "case6": {
       "clause_id": "clause-4"
+    },
+    "case-4-prompt-injection": {
+      "clause_id": "clause-2",
+      "challenge_id": "challenge-4"
     }
   },
   "withdrawals": {
@@ -265,14 +291,14 @@
     "producer": {
       "address": "0x400B706370F473881C1d61a3e03c6b4C8C676a50",
       "sim_fundAccount_tx": "0xb3346eb85b778439c8e8e3cc27ba4b538e14b4e7f13a04938461ba27d1b3a7da",
-      "funded_balance_hex": "0xf3f20",
-      "funded_balance_wei": "999200"
+      "funded_balance_hex": "0xf3ffc",
+      "funded_balance_wei": "999420"
     },
     "challenger": {
       "address": "0x8fbac031A9BF3EAa2B2b1e13b7d879547e2A14DA",
       "sim_fundAccount_tx": "0xc3aec7b2850145cb46e8cdaa24df4a334eca3386a429ff1fbb6ca79702f03864",
-      "funded_balance_hex": "0xf41c8",
-      "funded_balance_wei": "999880"
+      "funded_balance_hex": "0xf4254",
+      "funded_balance_wei": "1000020"
     }
   },
   "deploy": {
@@ -297,5 +323,6 @@
     ],
     "contract_address": "0xa528723770aaf22D6e3893D2E8168e48F9217F64",
     "done": true
-  }
+  },
+  "source_commit": "8812f82f8d492d7f0c7bf406c95147e7e6a17a4a"
 }
