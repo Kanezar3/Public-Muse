@@ -31,7 +31,7 @@ All 6 live StudioNet proof cases (breach slash, public-domain verify, vague reje
 ## Reviewer How-To Steps
 
 ```text
-1. Open the deployed frontend URL (or run `cd frontend && npm install && npm run dev` locally).
+1. Open the live deployed frontend at https://public-muse.vercel.app (or run `cd frontend && npm install && npm run dev` locally).
 2. In the default **Proof Inspector** tab (no wallet required), inspect Cases 1 through 6, including immutable Wikipedia `oldid` URLs, the commit-pinned GitHub raw prompt-injection fixture (Case 4), `evidence_sha256` digests, verbatim quotes, and payout summaries.
 3. Click any transaction link to verify `FINALIZED` / `MAJORITY_AGREE` status in the GenLayer StudioNet Explorer.
 4. Optionally run `npm run verify:proof` from the repo root to verify all 11 finalized StudioNet transactions via RPC, or `python -m pytest tests/test_public_muse.py -v` to run the unit test suite.
@@ -49,7 +49,7 @@ All 6 live StudioNet proof cases (breach slash, public-domain verify, vague reje
 ## Contract & Proof Explorer Links
 
 - **GitHub Repository:** https://github.com/Kanezar3/Public-Muse
-- **Live Frontend (Vercel):** `<PENDING_VERCEL_URL>`
+- **Live Frontend (Vercel):** https://public-muse.vercel.app
 - **PublicMuse Contract (`0xa528723770aaf22D6e3893D2E8168e48F9217F64`):** https://explorer-studio.genlayer.com/address/0xa528723770aaf22D6e3893D2E8168e48F9217F64
 - **EvidenceProbe Contract (`0xaDDb04fF7a81076eda9D84f1ddEf7aDd74bB6CA9`):** https://explorer-studio.genlayer.com/address/0xaDDb04fF7a81076eda9D84f1ddEf7aDd74bB6CA9
 - **PayableProbe Contract (`0xa01A982D8e41529251850B65C6deCEfD575D3967`):** https://explorer-studio.genlayer.com/address/0xa01A982D8e41529251850B65C6deCEfD575D3967

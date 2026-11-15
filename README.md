@@ -2,6 +2,10 @@
 
 **Public-Domain Clean-Room Adaptation & Provenance Bonds for Entertainment IP on GenLayer StudioNet**
 
+- **Live Frontend:** [https://public-muse.vercel.app](https://public-muse.vercel.app)
+- **GitHub Repository:** [https://github.com/Kanezar3/Public-Muse](https://github.com/Kanezar3/Public-Muse)
+- **StudioNet Contract:** [`0xa528723770aaf22D6e3893D2E8168e48F9217F64`](https://explorer-studio.genlayer.com/address/0xa528723770aaf22D6e3893D2E8168e48F9217F64)
+
 Public Muse is an on-chain clean-room adaptation registry and provenance bond protocol built on GenLayer StudioNet (`chainId: 61999`). Studios, indie creators, and licensors stake a bond on specific adaptation claims about public-domain works—for example, distinguishing pre-1929 public-domain elements in L. Frank Baum's 1900 novel *The Wonderful Wizard of Oz* (*Silver Shoes*) from later studio-copyrighted additions such as MGM's 1939 film (*Ruby Slippers*).
 
 GenLayer validators evaluate natural-language provenance claims and untrusted archival snapshots using **Optimistic Democracy** (`gl.eq_principle.strict_eq` and `gl.eq_principle.prompt_comparative`), while deterministic Python enforces immutable evidence URLs, bounded text normalization, SHA-256 evidence pinning, fixed payout accounting, timeout fallbacks, and pull-based EOA withdrawals.
@@ -91,6 +95,6 @@ For local development, run `npm run dev` inside `frontend/`. The **Proof Inspect
 
 ## Honest Limitations
 
-1. **Remote Vercel Deployment**: All 6 proof cases (including Case 4 prompt-injection resilience against commit `8812f82f8d492d7f0c7bf406c95147e7e6a17a4a`) are now finalized live on StudioNet, and the repository is hosted at `https://github.com/Kanezar3/Public-Muse`. Remote Vercel frontend deployment (`<PENDING_VERCEL_URL>`) is pending.
-2. **Interactive Wallet Signing**: Submitting new clauses, challenges, expiry claims, or withdrawals from the browser UI requires a human signer via MetaMask / EIP-1193 wallet connected to GenLayer StudioNet (`chainId: 61999`).
+1. **Bounded Evidence Extraction (`<= 2,500` Chars)**: Each challenge normalizes and SHA-256-pins up to the first `2,500` characters of extracted plain text from an immutable snapshot URL; claims requiring evidence deep in a long document must point to a concise immutable excerpt or raw text fixture.
+2. **Interactive Wallet Signing**: Submitting new clauses, challenges, expiry claims, or withdrawals from the browser UI requires a human signer via MetaMask / EIP-1193 wallet connected to GenLayer StudioNet (`chainId: 61999`), whereas the Proof Inspector and live RPC state viewer work without a wallet.
 3. **StudioNet Consensus Latency**: Live write transactions undergo multi-validator Optimistic Democracy consensus and typically take **~30–120+ seconds** per transaction to reach `FINALIZED`.

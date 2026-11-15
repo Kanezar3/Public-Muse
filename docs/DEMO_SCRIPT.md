@@ -1,6 +1,7 @@
 # Public Muse — 2-Minute Reviewer Demo Script
 
 **Target Duration:** ~2 minutes  
+**Live Frontend:** [https://public-muse.vercel.app](https://public-muse.vercel.app)  
 **Network:** GenLayer StudioNet (`chainId: 61999`, RPC: `https://studio.genlayer.com/api`)  
 **Contract:** `0xa528723770aaf22D6e3893D2E8168e48F9217F64`
 
@@ -8,7 +9,7 @@
 
 ## 0:00 – 0:25 · Problem & Concept (No Wallet Needed)
 
-- Open the **Public Muse** web app (loads directly into the **Proof Inspector** tab—no wallet connection required).
+- Open the **Public Muse** web app at [https://public-muse.vercel.app](https://public-muse.vercel.app) (loads directly into the **Proof Inspector** tab—no wallet connection required).
 - Point out the core IP problem: when adapting a pre-1929 public-domain work like L. Frank Baum's 1900 *The Wonderful Wizard of Oz*, creators must prove they use public-domain elements (*Silver Shoes*) rather than later studio-copyrighted additions (*Ruby Slippers* from MGM's 1939 film).
 - Show the masthead contract address (`0xa528723770aaf22D6e3893D2E8168e48F9217F64`) and the live StudioNet RPC status panel.
 
