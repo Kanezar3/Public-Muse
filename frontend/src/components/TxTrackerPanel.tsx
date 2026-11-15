@@ -2,6 +2,7 @@ import {
   CheckCircle2,
   Clock,
   ExternalLink,
+  Radio,
   RefreshCw,
   ShieldCheck,
   Trash2,
@@ -50,31 +51,26 @@ export function TxTrackerPanel({
 }: TxTrackerPanelProps) {
   if (transactions.length === 0) {
     return (
-      <section className="panel tracker-panel">
-        <div className="panel-header">
-          <div>
-            <p className="eyebrow">Resumable Lifecycle Tracker</p>
-            <h3 className="panel-title">StudioNet Transaction Queue</h3>
-          </div>
-          <span className="mono muted small">localStorage · 7s poll interval</span>
+      <footer className="tracker-bar" aria-label="Transaction queue status">
+        <div className="tracker-bar-left">
+          <Radio size={13} className="muted" />
+          <span className="mono">StudioNet Queue</span>
+          <span className="ledger-sep">·</span>
+          <span className="muted">Idle</span>
         </div>
-        <p className="muted small">
-          No active or recent wallet transactions. Any write transaction you submit (
-          <code>register_clause</code>, <code>submit_challenge</code>,{' '}
-          <code>withdraw_balance</code>) is persisted in <code>localStorage</code> and
-          automatically resumes polling every 7 seconds across page reloads until{' '}
-          <code>Finalized (7)</code>.
-        </p>
-      </section>
+        <div className="tracker-bar-right mono muted">
+          <span>localStorage 7s auto-poll · Resumes across reloads</span>
+        </div>
+      </footer>
     );
   }
 
   return (
-    <section className="panel tracker-panel">
-      <div className="panel-header">
+    <section className="folio-panel tracker-panel">
+      <div className="folio-header">
         <div>
           <p className="eyebrow">Resumable Lifecycle Tracker</p>
-          <h3 className="panel-title">
+          <h3 className="folio-title">
             StudioNet Transaction Queue ({transactions.length})
           </h3>
         </div>

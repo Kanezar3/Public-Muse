@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import {
+  BookmarkCheck,
   Coins,
   FilePlus2,
   Gavel,
@@ -7,9 +8,9 @@ import {
   Wallet,
 } from 'lucide-react';
 import type { Address } from 'viem';
+import { formatWeiDisplay } from '../lib/format';
 import {
   createWalletClient,
-  formatWeiToGen,
   parseGenToWei,
   shortHash,
 } from '../lib/genlayer';
@@ -28,6 +29,71 @@ interface WalletDeskProps {
   }) => void;
 }
 
+interface FilingPreset {
+  id: string;
+  label: string;
+  target: 'register' | 'challenge';
+  workTitle?: string;
+  elementClaim?: string;
+  pdSource?: string;
+  timeoutSeconds?: string;
+  bondAmount?: string;
+  bondUnit?: 'gen' | 'wei';
+  clauseId?: string;
+  evidenceUrl?: string;
+  feeAmount?: string;
+  feeUnit?: 'gen' | 'wei';
+}
+
+const FILING_PRESETS: FilingPreset[] = [
+  {
+    id: 'silver-shoes',
+    label: '1900 Silver Shoes Clean Claim',
+    target: 'register',
+    workTitle: 'The Wonderful Wizard of Oz',
+    elementClaim:
+      "In L. Frank Baum's 1900 novel The Wonderful Wizard of Oz, Dorothy Gale wears magical Silver Shoes.",
+    pdSource: 'The Wonderful Wizard of Oz (1900 novel)',
+    timeoutSeconds: '900',
+    bondAmount: '100',
+    bondUnit: 'wei',
+  },
+  {
+    id: 'ruby-slippers',
+    label: '1939 Ruby Slippers Breach Test',
+    target: 'register',
+    workTitle: 'The Wonderful Wizard of Oz',
+    elementClaim:
+      "In L. Frank Baum's 1900 novel The Wonderful Wizard of Oz, Dorothy Gale wears magical Ruby Slippers.",
+    pdSource: 'The Wonderful Wizard of Oz (1900 novel)',
+    timeoutSeconds: '900',
+    bondAmount: '100',
+    bondUnit: 'wei',
+  },
+  {
+    id: 'vague-filter',
+    label: 'Vague Marketing Filter Test',
+    target: 'register',
+    workTitle: 'The Wonderful Wizard of Oz',
+    elementClaim:
+      'Our Oz stage adaptation will faithfully preserve the timeless emotional warmth and wholesome cinematic spirit of the story.',
+    pdSource: 'The Wonderful Wizard of Oz (1900 novel)',
+    timeoutSeconds: '900',
+    bondAmount: '100',
+    bondUnit: 'wei',
+  },
+  {
+    id: 'prompt-injection',
+    label: 'Prompt-Injection Fixture Challenge',
+    target: 'challenge',
+    clauseId: 'clause-2',
+    evidenceUrl:
+      'https://raw.githubusercontent.com/Kanezar3/Public-Muse/8812f82f8d492d7f0c7bf406c95147e7e6a17a4a/fixtures/prompt_injection_oz.txt',
+    feeAmount: '20',
+    feeUnit: 'wei',
+  },
+];
+
 export function WalletDesk({
   contractAddress,
   connectedAddress,
@@ -36,36 +102,50 @@ export function WalletDesk({
   onTrackTx,
 }: WalletDeskProps) {
   // Register Clause state
-  const [workTitle, setWorkTitle] = useState(
-    'The Wonderful Wizard of Oz (1900 Novel)'
-  );
+  const [workTitle, setWorkTitle] = useState('The Wonderful Wizard of Oz');
   const [elementClaim, setElementClaim] = useState(
-    'Dorothy wears Silver Shoes gifted by the Good Witch of the North.'
+    "In L. Frank Baum's 1900 novel The Wonderful Wizard of Oz, Dorothy Gale wears magical Silver Shoes."
   );
-  const [pdSource, setPdSource] = useState(
-    'https://en.wikipedia.org/w/index.php?title=Silver_Shoes&oldid=1378659855'
-  );
-  const [timeoutSeconds, setTimeoutSeconds] = useState('3600');
-  const [bondAmount, setBondAmount] = useState('1');
-  const [bondUnit, setBondUnit] = useState<'gen' | 'wei'>('gen');
+  const [pdSource, setPdSource] = useState('The Wonderful Wizard of Oz (1900 novel)');
+  const [timeoutSeconds, setTimeoutSeconds] = useState('900');
+  const [bondAmount, setBondAmount] = useState('100');
+  const [bondUnit, setBondUnit] = useState<'gen' | 'wei'>('wei');
 
   // Submit Challenge state
-  const [challengeClauseId, setChallengeClauseId] = useState('');
+  const [challengeClauseId, setChallengeClauseId] = useState('clause-2');
   const [evidenceUrl, setEvidenceUrl] = useState(
-    'https://en.wikipedia.org/w/index.php?title=Ruby_slippers&oldid=1384457883'
+    'https://en.wikipedia.org/w/api.php?action=parse&oldid=1384457883&prop=wikitext&section=0&format=json'
   );
-  const [feeAmount, setFeeAmount] = useState('0.25');
-  const [feeUnit, setFeeUnit] = useState<'gen' | 'wei'>('gen');
+  const [feeAmount, setFeeAmount] = useState('20');
+  const [feeUnit, setFeeUnit] = useState<'gen' | 'wei'>('wei');
 
   // Fallbacks state
   const [stuckChallengeId, setStuckChallengeId] = useState('');
   const [expiredClauseId, setExpiredClauseId] = useState('');
 
+  const [activePresetId, setActivePresetId] = useState<string | null>(null);
   const [busyAction, setBusyAction] = useState<string | null>(null);
   const [actionError, setActionError] = useState<string | null>(null);
   const [actionSuccess, setActionSuccess] = useState<string | null>(null);
 
   const isContractReady = /^0x[a-fA-F0-9]{40}$/.test(contractAddress);
+
+  const applyPreset = (preset: FilingPreset) => {
+    setActivePresetId(preset.id);
+    if (preset.target === 'register') {
+      if (preset.workTitle !== undefined) setWorkTitle(preset.workTitle);
+      if (preset.elementClaim !== undefined) setElementClaim(preset.elementClaim);
+      if (preset.pdSource !== undefined) setPdSource(preset.pdSource);
+      if (preset.timeoutSeconds !== undefined) setTimeoutSeconds(preset.timeoutSeconds);
+      if (preset.bondAmount !== undefined) setBondAmount(preset.bondAmount);
+      if (preset.bondUnit !== undefined) setBondUnit(preset.bondUnit);
+    } else {
+      if (preset.clauseId !== undefined) setChallengeClauseId(preset.clauseId);
+      if (preset.evidenceUrl !== undefined) setEvidenceUrl(preset.evidenceUrl);
+      if (preset.feeAmount !== undefined) setFeeAmount(preset.feeAmount);
+      if (preset.feeUnit !== undefined) setFeeUnit(preset.feeUnit);
+    }
+  };
 
   const toWei = (amount: string, unit: 'gen' | 'wei'): bigint => {
     if (unit === 'wei') return BigInt(amount.trim() || '0');
@@ -84,7 +164,7 @@ export function WalletDesk({
 
     if (!isContractReady) {
       setActionError(
-        'Contract address is not configured. Wait for Stage 3 proof.json or enter a deployed StudioNet address in the header.'
+        'Contract address is not configured. Enter a deployed StudioNet address in the masthead.'
       );
       return;
     }
@@ -121,14 +201,14 @@ export function WalletDesk({
 
   const handleRegisterClause = async (e: FormEvent) => {
     e.preventDefault();
-    const timeoutNum = Math.max(60, Number.parseInt(timeoutSeconds, 10) || 3600);
+    const timeoutNum = Math.max(60, Number.parseInt(timeoutSeconds, 10) || 900);
     const valueWei = toWei(bondAmount, bondUnit);
     await runWrite(
       'register',
       'register_clause',
       [workTitle.trim(), elementClaim.trim(), pdSource.trim(), timeoutNum],
       valueWei,
-      `${workTitle.trim().slice(0, 38)} (${formatWeiToGen(valueWei)})`
+      `${workTitle.trim().slice(0, 38)} (${formatWeiDisplay(valueWei).primary})`
     );
   };
 
@@ -140,20 +220,20 @@ export function WalletDesk({
       'submit_challenge',
       [challengeClauseId.trim(), evidenceUrl.trim()],
       valueWei,
-      `Challenge on ${challengeClauseId.trim()} (${formatWeiToGen(valueWei)})`
+      `Challenge on ${challengeClauseId.trim()} (${formatWeiDisplay(valueWei).primary})`
     );
   };
 
   return (
     <div className="desk-stack">
       {/* Wallet Status Banner */}
-      <section className="panel wallet-banner">
+      <section className="folio-panel wallet-banner">
         <div>
-          <p className="eyebrow">Interactive StudioNet Flows (Chain 61999)</p>
-          <h2 className="panel-title">Adaptation Bond &amp; Challenge Desk</h2>
+          <p className="eyebrow">Interactive StudioNet Flows · Chain 61999</p>
+          <h2 className="folio-title">Adaptation Bond &amp; Challenge Filing Desk</h2>
           <p className="muted small">
             Transactions are signed via <code>window.ethereum</code> +{' '}
-            <code>genlayer-js</code> (<code>studionet</code>) and tracked through{' '}
+            <code>genlayer-js</code> and tracked through{' '}
             <code>Accepted (5)</code> appeal window to <code>Finalized (7)</code>.
           </p>
         </div>
@@ -162,8 +242,8 @@ export function WalletDesk({
             <div className="wallet-pill mono">
               <Wallet size={14} />
               <span>{shortHash(connectedAddress, 8, 6)}</span>
-              <span className="pill pill-ok">
-                Claimable: {formatWeiToGen(liveSnapshot?.claimableBalanceWei ?? '0')}
+              <span className="stamp-inline stamp-inline-ok">
+                Escrow: {formatWeiDisplay(liveSnapshot?.claimableBalanceWei ?? '0').primary}
               </span>
             </div>
           ) : (
@@ -175,86 +255,114 @@ export function WalletDesk({
         </div>
       </section>
 
+      {/* One-Click Example Filing Preset Bar */}
+      <section className="preset-bar" aria-label="Load example filing presets">
+        <div className="preset-label">
+          <BookmarkCheck size={14} />
+          <span className="mono">LOAD EXAMPLE FILING</span>
+        </div>
+        <div className="preset-buttons">
+          {FILING_PRESETS.map((preset) => (
+            <button
+              key={preset.id}
+              type="button"
+              className={`preset-btn ${activePresetId === preset.id ? 'active' : ''}`}
+              onClick={() => applyPreset(preset)}
+            >
+              <span>{preset.label}</span>
+              <span className="preset-target mono">
+                {preset.target === 'register' ? 'Clause' : 'Challenge'}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
       {actionError && <div className="alert alert-error">{actionError}</div>}
       {actionSuccess && <div className="alert alert-success">{actionSuccess}</div>}
 
       <div className="desk-grid">
         {/* Form 1: register_clause */}
-        <form className="panel form-card" onSubmit={handleRegisterClause}>
+        <form className="folio-panel form-card" onSubmit={handleRegisterClause}>
           <div className="form-card-header">
             <FilePlus2 size={18} />
             <div>
-              <h3>Register Adaptation Clause</h3>
-              <p className="mono muted small">
-                register_clause(work_title, element_claim, public_domain_source, timeout_seconds)
+              <div className="heading-with-tag">
+                <h3>Register Adaptation Clause</h3>
+                <span className="method-tag mono">register_clause · payable</span>
+              </div>
+              <p className="muted small">
+                Post a creator bond and submit a clean-room claim for Gate 1 observability screening.
               </p>
             </div>
           </div>
 
-          <label className="field">
-            <span>Public-Domain Work Title</span>
-            <input
-              type="text"
-              required
-              value={workTitle}
-              onChange={(e) => setWorkTitle(e.target.value)}
-              placeholder="e.g. The Wonderful Wizard of Oz (1900 Novel)"
-            />
-          </label>
-
-          <label className="field">
-            <span>Clean-Room Element Claim</span>
-            <textarea
-              rows={3}
-              required
-              value={elementClaim}
-              onChange={(e) => setElementClaim(e.target.value)}
-              placeholder="Specific character, prop, or plot element claimed as public domain..."
-            />
-          </label>
-
-          <label className="field">
-            <span>Public-Domain Source URL</span>
-            <input
-              type="url"
-              required
-              value={pdSource}
-              onChange={(e) => setPdSource(e.target.value)}
-              placeholder="https://en.wikipedia.org/w/index.php?title=...&oldid=..."
-            />
-          </label>
-
-          <div className="field-row">
+          <fieldset className="fieldset-group">
             <label className="field">
-              <span>Timeout (seconds)</span>
+              <span>Public-Domain Work Title</span>
               <input
-                type="number"
-                min={60}
+                type="text"
                 required
-                value={timeoutSeconds}
-                onChange={(e) => setTimeoutSeconds(e.target.value)}
+                value={workTitle}
+                onChange={(e) => setWorkTitle(e.target.value)}
+                placeholder="e.g. The Wonderful Wizard of Oz"
               />
             </label>
 
             <label className="field">
-              <span>Creator Bond</span>
-              <div className="input-with-unit">
-                <input
-                  type="text"
-                  required
-                  value={bondAmount}
-                  onChange={(e) => setBondAmount(e.target.value)}
-                />
-                <select
-                  value={bondUnit}
-                  onChange={(e) => setBondUnit(e.target.value as 'gen' | 'wei')}
-                >
-                  <option value="gen">GEN</option>
-                  <option value="wei">wei</option>
-                </select>
-              </div>
+              <span>Clean-Room Element Claim</span>
+              <textarea
+                rows={3}
+                required
+                value={elementClaim}
+                onChange={(e) => setElementClaim(e.target.value)}
+                placeholder="Specific character, prop, or plot element claimed as public domain..."
+              />
             </label>
-          </div>
+
+            <label className="field">
+              <span>Public-Domain Source Citation / URL</span>
+              <input
+                type="text"
+                required
+                value={pdSource}
+                onChange={(e) => setPdSource(e.target.value)}
+                placeholder="e.g. The Wonderful Wizard of Oz (1900 novel)"
+              />
+            </label>
+
+            <div className="field-row">
+              <label className="field">
+                <span>Timeout (seconds)</span>
+                <input
+                  type="number"
+                  min={60}
+                  required
+                  value={timeoutSeconds}
+                  onChange={(e) => setTimeoutSeconds(e.target.value)}
+                />
+              </label>
+
+              <label className="field">
+                <span>Creator Bond ({bondUnit.toUpperCase()})</span>
+                <div className="input-with-unit">
+                  <input
+                    type="text"
+                    required
+                    value={bondAmount}
+                    onChange={(e) => setBondAmount(e.target.value)}
+                  />
+                  <select
+                    value={bondUnit}
+                    onChange={(e) => setBondUnit(e.target.value as 'gen' | 'wei')}
+                  >
+                    <option value="wei">wei</option>
+                    <option value="gen">GEN</option>
+                  </select>
+                </div>
+              </label>
+            </div>
+          </fieldset>
 
           <button
             type="submit"
@@ -266,71 +374,76 @@ export function WalletDesk({
         </form>
 
         {/* Form 2: submit_challenge */}
-        <form className="panel form-card" onSubmit={handleSubmitChallenge}>
+        <form className="folio-panel form-card" onSubmit={handleSubmitChallenge}>
           <div className="form-card-header">
             <Gavel size={18} />
             <div>
-              <h3>Submit Provenance Challenge</h3>
-              <p className="mono muted small">
-                submit_challenge(clause_id, evidence_url) · payable
+              <div className="heading-with-tag">
+                <h3>Submit Provenance Challenge</h3>
+                <span className="method-tag mono">submit_challenge · payable</span>
+              </div>
+              <p className="muted small">
+                Attach an immutable source URL for validator equivalence audit against the claim.
               </p>
             </div>
           </div>
 
-          <label className="field">
-            <span>Target Clause ID</span>
-            <input
-              type="text"
-              required
-              value={challengeClauseId}
-              onChange={(e) => setChallengeClauseId(e.target.value)}
-              placeholder="Enter clause_id (or pick from live clauses below)"
-            />
-            {liveSnapshot?.clauses && liveSnapshot.clauses.length > 0 && (
-              <div className="quick-picks">
-                {liveSnapshot.clauses.slice(0, 4).map((c) => (
-                  <button
-                    key={c.clause_id}
-                    type="button"
-                    className="chip-btn mono"
-                    onClick={() => setChallengeClauseId(c.clause_id)}
-                  >
-                    {c.clause_id}
-                  </button>
-                ))}
-              </div>
-            )}
-          </label>
-
-          <label className="field">
-            <span>Immutable Evidence URL Hint (Wikipedia oldid / GitHub commit)</span>
-            <input
-              type="url"
-              required
-              value={evidenceUrl}
-              onChange={(e) => setEvidenceUrl(e.target.value)}
-              placeholder="https://en.wikipedia.org/w/index.php?title=...&oldid=..."
-            />
-          </label>
-
-          <label className="field">
-            <span>Challenge Fee</span>
-            <div className="input-with-unit">
+          <fieldset className="fieldset-group">
+            <label className="field">
+              <span>Target Clause ID</span>
               <input
                 type="text"
                 required
-                value={feeAmount}
-                onChange={(e) => setFeeAmount(e.target.value)}
+                value={challengeClauseId}
+                onChange={(e) => setChallengeClauseId(e.target.value)}
+                placeholder="Enter clause_id (or pick from live clauses)"
               />
-              <select
-                value={feeUnit}
-                onChange={(e) => setFeeUnit(e.target.value as 'gen' | 'wei')}
-              >
-                <option value="gen">GEN</option>
-                <option value="wei">wei</option>
-              </select>
-            </div>
-          </label>
+              {liveSnapshot?.clauses && liveSnapshot.clauses.length > 0 && (
+                <div className="quick-picks">
+                  {liveSnapshot.clauses.slice(0, 4).map((c) => (
+                    <button
+                      key={c.clause_id}
+                      type="button"
+                      className="chip-btn mono"
+                      onClick={() => setChallengeClauseId(c.clause_id)}
+                    >
+                      {c.clause_id}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </label>
+
+            <label className="field">
+              <span>Immutable Evidence URL (Wikipedia oldid / GitHub SHA / Wayback)</span>
+              <input
+                type="url"
+                required
+                value={evidenceUrl}
+                onChange={(e) => setEvidenceUrl(e.target.value)}
+                placeholder="https://en.wikipedia.org/w/api.php?action=parse&oldid=..."
+              />
+            </label>
+
+            <label className="field">
+              <span>Challenge Fee ({feeUnit.toUpperCase()})</span>
+              <div className="input-with-unit">
+                <input
+                  type="text"
+                  required
+                  value={feeAmount}
+                  onChange={(e) => setFeeAmount(e.target.value)}
+                />
+                <select
+                  value={feeUnit}
+                  onChange={(e) => setFeeUnit(e.target.value as 'gen' | 'wei')}
+                >
+                  <option value="wei">wei</option>
+                  <option value="gen">GEN</option>
+                </select>
+              </div>
+            </label>
+          </fieldset>
 
           <button
             type="submit"
@@ -342,37 +455,39 @@ export function WalletDesk({
         </form>
 
         {/* Form 3: Withdraw & Deadline Fallbacks */}
-        <div className="panel form-card form-card-wide">
+        <div className="folio-panel form-card form-card-wide">
           <div className="form-card-header">
             <Coins size={18} />
             <div>
-              <h3>Withdrawals &amp; Deadline Fallbacks</h3>
-              <p className="mono muted small">
-                withdraw_balance() · resolve_stuck_challenge(challenge_id) ·
-                claim_expired_clause_bond(clause_id)
+              <div className="heading-with-tag">
+                <h3>Escrow Withdrawals &amp; Deadline Fallbacks</h3>
+                <span className="method-tag mono">withdraw · expiry</span>
+              </div>
+              <p className="muted small">
+                Withdraw settled EOA escrow balances or trigger deterministic timeout fallbacks.
               </p>
             </div>
           </div>
 
           <div className="fallback-grid">
-            <div className="sub-card">
-              <h4>Claimable Balance</h4>
+            <div className="sub-folio">
+              <h4>Claimable Escrow</h4>
               <p className="mono big-num">
-                {formatWeiToGen(liveSnapshot?.claimableBalanceWei ?? '0')}
+                {formatWeiDisplay(liveSnapshot?.claimableBalanceWei ?? '0').primary}
               </p>
               <button
                 type="button"
                 className="btn btn-secondary"
                 disabled={busyAction !== null || !isContractReady || !connectedAddress}
                 onClick={() =>
-                  runWrite('withdraw', 'withdraw_balance', [], 0n, 'Withdraw claimable GEN balance')
+                  runWrite('withdraw', 'withdraw_balance', [], 0n, 'Withdraw claimable balance')
                 }
               >
                 {busyAction === 'withdraw' ? 'Withdrawing…' : 'Withdraw Balance'}
               </button>
             </div>
 
-            <div className="sub-card">
+            <div className="sub-folio">
               <h4>
                 <TimerReset size={14} /> Resolve Stuck Challenge
               </h4>
@@ -405,7 +520,7 @@ export function WalletDesk({
               </button>
             </div>
 
-            <div className="sub-card">
+            <div className="sub-folio">
               <h4>
                 <TimerReset size={14} /> Claim Expired Clause Bond
               </h4>

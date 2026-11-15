@@ -1,8 +1,8 @@
 import { Database, ExternalLink, RefreshCw } from 'lucide-react';
+import { formatWeiDisplay } from '../lib/format';
 import {
   STUDIONET_RPC_URL,
   addressExplorerUrl,
-  formatWeiToGen,
   shortHash,
 } from '../lib/genlayer';
 import type { LiveChainSnapshot } from '../types/proof';
@@ -22,15 +22,20 @@ export function LiveChainPanel({
   onRefresh,
 }: LiveChainPanelProps) {
   const contractUrl = addressExplorerUrl(snapshot?.contractAddress);
+  const balanceFmt = formatWeiDisplay(snapshot?.claimableBalanceWei ?? '0');
 
   return (
-    <section className="panel live-panel">
-      <div className="panel-header">
+    <section className="folio-panel live-panel">
+      <div className="folio-header">
         <div>
           <p className="eyebrow">
-            <Database size={12} /> Live StudioNet RPC Reads (Chain 61999)
+            <Database size={12} />
+            <span>Live StudioNet RPC Reads · Chain 61999</span>
           </p>
-          <h3 className="panel-title">On-Chain Contract State (`readContract`)</h3>
+          <div className="heading-with-tag">
+            <h3 className="folio-title">On-Chain Contract State</h3>
+            <span className="method-tag mono">readContract</span>
+          </div>
         </div>
         <button
           type="button"
@@ -43,108 +48,135 @@ export function LiveChainPanel({
         </button>
       </div>
 
-      <div className="live-meta-bar mono small">
-        <span>Endpoint: {STUDIONET_RPC_URL}</span>
-        <span>
-          Contract:{' '}
-          {snapshot?.contractAddress ? (
-            contractUrl ? (
-              <a href={contractUrl} target="_blank" rel="noreferrer" className="ext-link">
-                {shortHash(snapshot.contractAddress, 10, 8)} <ExternalLink size={11} />
-              </a>
+      <div className="ledger-strip mono small">
+        <div className="ledger-cell">
+          <span className="ledger-k">RPC ENDPOINT</span>
+          <span className="ledger-v">{STUDIONET_RPC_URL}</span>
+        </div>
+        <div className="ledger-cell">
+          <span className="ledger-k">CONTRACT</span>
+          <span className="ledger-v">
+            {snapshot?.contractAddress ? (
+              contractUrl ? (
+                <a href={contractUrl} target="_blank" rel="noreferrer" className="ext-link">
+                  {shortHash(snapshot.contractAddress, 10, 8)} <ExternalLink size={11} />
+                </a>
+              ) : (
+                snapshot.contractAddress
+              )
             ) : (
-              snapshot.contractAddress
-            )
-          ) : (
-            'Not configured'
-          )}
-        </span>
+              'Not configured'
+            )}
+          </span>
+        </div>
         {snapshot?.fetchedAt && (
-          <span>Last Read: {new Date(snapshot.fetchedAt).toLocaleTimeString()}</span>
+          <div className="ledger-cell">
+            <span className="ledger-k">LAST VERIFIED</span>
+            <span className="ledger-v">{new Date(snapshot.fetchedAt).toLocaleTimeString()}</span>
+          </div>
         )}
       </div>
 
       {snapshot?.error ? (
         <div className="notice-box">
-          <strong>Live RPC Unavailable / Unconfigured:</strong> {snapshot.error}
+          <strong>Live RPC Unavailable:</strong> {snapshot.error}
         </div>
       ) : (
         <div className="live-grid">
-          <div className="live-card">
-            <h4>get_config()</h4>
+          <div className="sub-folio">
+            <div className="sub-folio-head">
+              <h4>Protocol Configuration</h4>
+              <span className="method-tag mono">get_config</span>
+            </div>
             {snapshot?.config ? (
               <dl className="kv-list small">
-                {Object.entries(snapshot.config).map(([k, v]) => (
-                  <div key={k} className="kv-row">
-                    <dt className="mono">{k}</dt>
-                    <dd className="mono">
-                      {k.endsWith('_wei') ? formatWeiToGen(String(v)) : String(v)}
-                    </dd>
-                  </div>
-                ))}
+                {Object.entries(snapshot.config).map(([k, v]) => {
+                  const isWei = k.endsWith('_wei');
+                  const formatted = isWei ? formatWeiDisplay(String(v)) : null;
+                  return (
+                    <div key={k} className="kv-row">
+                      <dt className="mono">{k}</dt>
+                      <dd className="mono" title={formatted?.secondary}>
+                        {formatted ? formatted.primary : String(v)}
+                      </dd>
+                    </div>
+                  );
+                })}
               </dl>
             ) : (
-              <p className="muted small">No config returned yet.</p>
+              <p className="muted small">No configuration returned yet.</p>
             )}
           </div>
 
-          <div className="live-card">
-            <h4>get_claimable_balance(account)</h4>
+          <div className="sub-folio">
+            <div className="sub-folio-head">
+              <h4>Account Escrow Ledger</h4>
+              <span className="method-tag mono">get_claimable_balance</span>
+            </div>
             {connectedAddress ? (
               <div className="balance-readout">
-                <span className="mono big-num">
-                  {formatWeiToGen(snapshot?.claimableBalanceWei ?? '0')}
+                <span className="mono big-num" title={balanceFmt.secondary}>
+                  {balanceFmt.primary}
                 </span>
                 <span className="mono muted small">
-                  Account: {shortHash(connectedAddress, 10, 8)}
+                  {balanceFmt.secondary} · Account {shortHash(connectedAddress, 10, 8)}
                 </span>
               </div>
             ) : (
               <p className="muted small">
-                Connect a wallet in the header or Bond Desk to query your claimable GEN balance.
-                Proof inspection requires no wallet.
+                Connect a wallet in the masthead or Filing Desk to query your on-chain escrow
+                balance. Proof inspection requires no wallet.
               </p>
             )}
           </div>
 
-          <div className="live-card live-card-wide">
-            <h4>list_clauses() — On-Chain Clauses ({snapshot?.clauses.length ?? 0})</h4>
+          <div className="sub-folio sub-folio-wide">
+            <div className="sub-folio-head">
+              <h4>
+                Registered Adaptation Clauses ({snapshot?.clauses.length ?? 0})
+              </h4>
+              <span className="method-tag mono">list_clauses</span>
+            </div>
             {snapshot?.clauses && snapshot.clauses.length > 0 ? (
               <div className="mini-table-wrap">
                 <table className="mini-table">
                   <thead>
                     <tr>
-                      <th>Clause ID</th>
-                      <th>Work &amp; Element Claim</th>
+                      <th>Clause</th>
+                      <th>Work &amp; Adaptation Claim</th>
                       <th>Bond</th>
-                      <th>Status</th>
+                      <th>Disposition</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {snapshot.clauses.map((c) => (
-                      <tr key={c.clause_id}>
-                        <td className="mono">
-                          <div>{c.clause_id}</div>
-                          {c.producer && (
-                            <div className="muted small">{shortHash(c.producer, 8, 6)}</div>
-                          )}
-                        </td>
-                        <td>
-                          <strong>{c.work_title}</strong>
-                          <div className="muted small">{c.element_claim}</div>
-                          {c.reason && <div className="muted small">Reason: {c.reason}</div>}
-                        </td>
-                        <td className="mono">
-                          <div>{formatWeiToGen(c.bond_wei)}</div>
-                          {c.refunded_wei && c.refunded_wei !== '0' && (
-                            <div className="muted small">
-                              Refunded: {formatWeiToGen(c.refunded_wei)}
-                            </div>
-                          )}
-                        </td>
-                        <td className="mono">{c.status ?? 'ACTIVE'}</td>
-                      </tr>
-                    ))}
+                    {snapshot.clauses.map((c) => {
+                      const bond = formatWeiDisplay(c.bond_wei);
+                      const refunded = formatWeiDisplay(c.refunded_wei);
+                      return (
+                        <tr key={c.clause_id}>
+                          <td className="mono">
+                            <div className="strong-mono">{c.clause_id}</div>
+                            {c.producer && (
+                              <div className="muted small" title={c.producer}>
+                                {shortHash(c.producer, 8, 6)}
+                              </div>
+                            )}
+                          </td>
+                          <td>
+                            <div className="table-work">{c.work_title}</div>
+                            <div className="muted small">{c.element_claim}</div>
+                            {c.reason && <div className="muted small">Note: {c.reason}</div>}
+                          </td>
+                          <td className="mono" title={bond.secondary}>
+                            <div>{bond.primary}</div>
+                            {c.refunded_wei && c.refunded_wei !== '0' && (
+                              <div className="muted small">Returned: {refunded.primary}</div>
+                            )}
+                          </td>
+                          <td className="mono">{c.status ?? 'ACTIVE'}</td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -153,49 +185,64 @@ export function LiveChainPanel({
             )}
           </div>
 
-          <div className="live-card live-card-wide">
-            <h4>list_challenges() — On-Chain Challenges ({snapshot?.challenges.length ?? 0})</h4>
+          <div className="sub-folio sub-folio-wide">
+            <div className="sub-folio-head">
+              <h4>
+                Filed Provenance Challenges ({snapshot?.challenges.length ?? 0})
+              </h4>
+              <span className="method-tag mono">list_challenges</span>
+            </div>
             {snapshot?.challenges && snapshot.challenges.length > 0 ? (
               <div className="mini-table-wrap">
                 <table className="mini-table">
                   <thead>
                     <tr>
-                      <th>Challenge ID</th>
-                      <th>Clause ID</th>
-                      <th>Verdict</th>
-                      <th>Evidence Digest</th>
+                      <th>Challenge</th>
+                      <th>Clause</th>
+                      <th>Validator Verdict &amp; Excerpt</th>
+                      <th>Evidence SHA-256 &amp; Payout</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {snapshot.challenges.map((ch) => (
-                      <tr key={ch.challenge_id}>
-                        <td className="mono">
-                          <div>{ch.challenge_id}</div>
-                          {ch.challenger && (
-                            <div className="muted small">{shortHash(ch.challenger, 8, 6)}</div>
-                          )}
-                        </td>
-                        <td className="mono">{ch.clause_id}</td>
-                        <td>
-                          {ch.verdict ? (
-                            <VerdictBadge verdict={ch.verdict} />
-                          ) : (
-                            <span className="mono">{ch.status ?? 'PENDING'}</span>
-                          )}
-                          {ch.quote && (
-                            <div className="muted small">“{ch.quote.slice(0, 90)}…”</div>
-                          )}
-                        </td>
-                        <td className="mono">
-                          <div>{shortHash(ch.evidence_sha256, 10, 8)}</div>
-                          {ch.payout_wei && (
-                            <div className="muted small">
-                              Payout: {formatWeiToGen(ch.payout_wei)}
+                    {snapshot.challenges.map((ch) => {
+                      const payout = formatWeiDisplay(ch.payout_wei);
+                      return (
+                        <tr key={ch.challenge_id}>
+                          <td className="mono">
+                            <div className="strong-mono">{ch.challenge_id}</div>
+                            {ch.challenger && (
+                              <div className="muted small" title={ch.challenger}>
+                                {shortHash(ch.challenger, 8, 6)}
+                              </div>
+                            )}
+                          </td>
+                          <td className="mono">{ch.clause_id}</td>
+                          <td>
+                            {ch.verdict ? (
+                              <VerdictBadge verdict={ch.verdict} />
+                            ) : (
+                              <span className="mono">{ch.status ?? 'PENDING'}</span>
+                            )}
+                            {ch.quote && (
+                              <div className="muted small table-quote">
+                                “{ch.quote.slice(0, 110)}
+                                {ch.quote.length > 110 ? '…' : ''}”
+                              </div>
+                            )}
+                          </td>
+                          <td className="mono">
+                            <div title={ch.evidence_sha256}>
+                              {shortHash(ch.evidence_sha256, 10, 8)}
                             </div>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
+                            {ch.payout_wei && (
+                              <div className="muted small" title={payout.secondary}>
+                                Payout: {payout.primary}
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
