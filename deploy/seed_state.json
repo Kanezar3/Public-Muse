@@ -1,0 +1,301 @@
+{
+  "steps": {
+    "case1_register": {
+      "tx_id": "0x0d465af8c928add02fd6c2e9d9754c609917a5db8d17a7ed64080a788a59766b",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case1_challenge": {
+      "tx_id": "0x43e13080ebcb0a549fd981a8c20999bec6c4e1bb0bef2aac8ac16c3d795d56b9",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case2_register": {
+      "tx_id": "0xdd1f620f765b11e9efd5180fb3f4923dc140f7e0b2bf04962cb5fb44013ac9c5",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case2_challenge": {
+      "tx_id": "0x649675edee463c6e556a48b3e7ce41a6f3c534d9e104061d881917017928c1d8",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "AGREE",
+        "AGREE",
+        "IDLE"
+      ],
+      "done": true
+    },
+    "case3_register": {
+      "tx_id": "0x853eed9db9c0f3b5195a33d48d5e2255cccd6332d1b5576cc7bc3808bb208248",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "AGREE",
+        "IDLE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case5_challenge": {
+      "tx_id": "0xe4de5d29dd31692aea4e794193ce260c3bf86144529c7628544388d5bc43d03f",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "AGREE",
+        "IDLE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case6_register": {
+      "tx_id": "0x867938125f02270e19e3386be8658646238da482b8432d283b2789695c3ba39e",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "IDLE",
+        "AGREE",
+        "AGREE",
+        "AGREE",
+        "IDLE"
+      ],
+      "done": true
+    },
+    "case6_expire": {
+      "tx_id": "0x40c6bd70e10d25591a502796455ff4a792d7582f3b141c21b50c8494b75e39bc",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case6_withdraw_producer": {
+      "tx_id": "0x6023a08c18fe032ac12406d88aa9e5d01942bfe9f17b52afa38120b2a3b5b3d3",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "AGREE",
+        "IDLE",
+        "AGREE"
+      ],
+      "done": true
+    },
+    "case6_withdraw_challenger": {
+      "tx_id": "0x0b505a99017d1b342797a29a11cc6eeaf6073a9525d6db88de673e298334f765",
+      "status": "FINALIZED",
+      "result": 6,
+      "result_name": "MAJORITY_AGREE",
+      "leader_execution_result": "SUCCESS",
+      "leader_genvm_result": {
+        "stderr": "",
+        "stdout": "",
+        "raw_error": null,
+        "error_code": null,
+        "error_description": null
+      },
+      "validator_votes_name": [
+        "AGREE",
+        "IDLE",
+        "IDLE",
+        "AGREE",
+        "AGREE"
+      ],
+      "done": true
+    }
+  },
+  "case_meta": {
+    "case-1-ruby-slippers-breach": {
+      "clause_id": "clause-1",
+      "challenge_id": "challenge-1"
+    },
+    "case-2-silver-shoes-public-domain": {
+      "clause_id": "clause-2",
+      "challenge_id": "challenge-2"
+    },
+    "case3": {
+      "clause_id": "clause-3"
+    },
+    "case-5-insufficient-evidence": {
+      "clause_id": "clause-2",
+      "challenge_id": "challenge-3"
+    },
+    "case6": {
+      "clause_id": "clause-4"
+    }
+  },
+  "withdrawals": {
+    "producer": {
+      "address": "0x400B706370F473881C1d61a3e03c6b4C8C676a50",
+      "claimable_before_wei": "220",
+      "eoa_before_wei": "999200",
+      "eoa_after_wei": "999420",
+      "contract_before_wei": "460",
+      "contract_after_wei": "240",
+      "tx_id": "0x6023a08c18fe032ac12406d88aa9e5d01942bfe9f17b52afa38120b2a3b5b3d3"
+    },
+    "challenger": {
+      "address": "0x8fbac031A9BF3EAa2B2b1e13b7d879547e2A14DA",
+      "claimable_before_wei": "140",
+      "eoa_before_wei": "999880",
+      "eoa_after_wei": "1000020",
+      "contract_before_wei": "240",
+      "contract_after_wei": "100",
+      "tx_id": "0x0b505a99017d1b342797a29a11cc6eeaf6073a9525d6db88de673e298334f765"
+    }
+  },
+  "accounts": {
+    "producer": {
+      "address": "0x400B706370F473881C1d61a3e03c6b4C8C676a50",
+      "sim_fundAccount_tx": "0xb3346eb85b778439c8e8e3cc27ba4b538e14b4e7f13a04938461ba27d1b3a7da",
+      "funded_balance_hex": "0xf3f20",
+      "funded_balance_wei": "999200"
+    },
+    "challenger": {
+      "address": "0x8fbac031A9BF3EAa2B2b1e13b7d879547e2A14DA",
+      "sim_fundAccount_tx": "0xc3aec7b2850145cb46e8cdaa24df4a334eca3386a429ff1fbb6ca79702f03864",
+      "funded_balance_hex": "0xf41c8",
+      "funded_balance_wei": "999880"
+    }
+  },
+  "deploy": {
+    "tx_id": "0x2c61eb5e0ae1a176a987b87eb8d59d34a391913a8414efe9ed15fabc56bfc678",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "IDLE"
+    ],
+    "contract_address": "0xa528723770aaf22D6e3893D2E8168e48F9217F64",
+    "done": true
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "runner_hash": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+  "schema": {
+    "jsonrpc": "2.0",
+    "result": {
+      "ctor": {
+        "params": [],
+        "kwparams": {}
+      },
+      "methods": {
+        "deposit": {
+          "params": [],
+          "kwparams": {},
+          "readonly": false,
+          "ret": "int",
+          "payable": true
+        },
+        "get_state": {
+          "params": [],
+          "kwparams": {},
+          "readonly": true,
+          "ret": "string"
+        },
+        "test_run_nondet": {
+          "params": [],
+          "kwparams": {},
+          "readonly": false,
+          "ret": "string",
+          "payable": false
+        },
+        "withdraw_evm_interface": {
+          "params": [
+            [
+              "amount",
+              "int"
+            ]
+          ],
+          "kwparams": {},
+          "readonly": false,
+          "ret": "int",
+          "payable": false
+        },
+        "withdraw_ic_emit_transfer": {
+          "params": [
+            [
+              "amount",
+              "int"
+            ]
+          ],
+          "kwparams": {},
+          "readonly": false,
+          "ret": "int",
+          "payable": false
+        }
+      }
+    },
+    "id": 1
+  },
+  "pending": {},
+  "deploy": {
+    "tx_id": "0x52dcc60294449c3d5dad5700d2405a379d54653ddf59f79a0a11cf83ec030a85",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "AGREE",
+      "AGREE",
+      "AGREE",
+      "AGREE"
+    ]
+  },
+  "contract_address": "0xa01A982D8e41529251850B65C6deCEfD575D3967",
+  "unfunded_payable_attempt": {
+    "address": "0x09597068d24A7C12a53a9d25cD2Fed1D4f586192",
+    "balance_before_hex": "0x0",
+    "submitted": true,
+    "tx_id": "0xfb52cc00d9e5b9bb1bacbefb773af84953a2a72046aaaefbd8ae8dd9bfc3a0a5",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "AGREE",
+      "AGREE",
+      "AGREE",
+      "AGREE"
+    ]
+  },
+  "funded_deposit": {
+    "address": "0x8FB5B0D377cc45bBceF228C3711C5B3450842cF3",
+    "sim_fundAccount_tx": "0x6d10d1ab2691f67d3a9f5eea901780288ab16ad7e61e9db2d86c6a2154b3e9f0",
+    "balance_after_fund_hex": "0xf4240",
+    "balance_after_deposit_hex": "0xf41dc",
+    "state_after": {
+      "contract_balance": 200,
+      "last_nondet": "",
+      "last_value": 100
+    },
+    "tx_id": "0x0cbba4d7f0b53bd1a2b7bd5117072362f9b2cbb1c0b587a14f5ee0b0855d8681",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "IDLE",
+      "AGREE"
+    ]
+  },
+  "withdraw_ic_emit_transfer": {
+    "balance_before_hex": "0xf41dc",
+    "balance_after_hex": "0xf41dc",
+    "state_after": {
+      "contract_balance": 190,
+      "last_nondet": "",
+      "last_value": 100
+    },
+    "tx_id": "0x432ab464acdef72e302f2ec3ed8b4f5cae59f037f3220ba2db86790cab87265e",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "AGREE",
+      "IDLE"
+    ]
+  },
+  "withdraw_evm_interface": {
+    "balance_before_hex": "0xf41dc",
+    "balance_after_hex": "0xf41e6",
+    "state_after": {
+      "contract_balance": 180,
+      "last_nondet": "",
+      "last_value": 100
+    },
+    "tx_id": "0xc3b614d7391a1308cd02b7251aad71fd7404381e5aa0ea2fb9430a1d84a7d833",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "IDLE",
+      "AGREE"
+    ]
+  },
+  "test_run_nondet": {
+    "state_after": {
+      "contract_balance": 180,
+      "last_nondet": "",
+      "last_value": 100
+    },
+    "tx_id": "0x6ceb55d50890063ff24d39037865f82bc8c59e5f2476a1fbdaa1ac4bd0b24bf8",
+    "status": "UNDETERMINED",
+    "result": 7,
+    "result_name": "MAJORITY_DISAGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "DISAGREE",
+      "DISAGREE",
+      "DISAGREE",
+      "IDLE",
+      "IDLE"
+    ]
+  }
+}

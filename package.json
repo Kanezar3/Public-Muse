@@ -1,0 +1,9 @@
+{
+  "name": "public-muse",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify:proof": "node scripts/verify_proof.mjs"
+  }
+}

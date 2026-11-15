@@ -1,0 +1,448 @@
+{
+  "generated_at_utc": "2026-11-14T19:53:44.473794+00:00",
+  "project_root": "C:\\Users\\user\\AntigravityProfiles\\account2\\.gemini\\antigravity\\scratch\\public-muse",
+  "tools": {
+    "python": {
+      "installed": true,
+      "executable": "C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\python.exe",
+      "version": "3.15.2",
+      "ckzg_stub_required": true
+    },
+    "pip": {
+      "standalone_cli": {
+        "installed": false,
+        "path": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "Not found on PATH"
+      },
+      "python_module": {
+        "installed": true,
+        "path": "C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\python.exe",
+        "returncode": 0,
+        "stdout": "pip 26.2.2 from C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\Lib\\site-packages\\pip (python 3.15)",
+        "stderr": ""
+      }
+    },
+    "node": {
+      "installed": true,
+      "path": "C:\\Program Files\\nodejs\\node.EXE",
+      "returncode": 0,
+      "stdout": "v24.12.0",
+      "stderr": ""
+    },
+    "npm": {
+      "installed": true,
+      "path": "C:\\Program Files\\nodejs\\npm.CMD",
+      "returncode": 0,
+      "stdout": "11.6.2",
+      "stderr": ""
+    },
+    "npm_global_list": {
+      "installed": true,
+      "path": "C:\\Program Files\\nodejs\\npm.CMD",
+      "returncode": 4294963238,
+      "stdout": "",
+      "stderr": "npm error code ENOENT\nnpm error syscall lstat\nnpm error path C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Roaming\\npm\nnpm error errno -4058\nnpm error enoent ENOENT: no such file or directory, lstat 'C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Roaming\\npm'\nnpm error enoent This is related to npm not being able to find a file.\nnpm error enoent\nnpm error A complete log of this run can be found in: C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\npm-cache\\_logs\\2026-11-14T19_53_51_190Z-debug-0.log"
+    },
+    "git": {
+      "version": {
+        "installed": true,
+        "path": "C:\\Program Files\\Git\\cmd\\git.EXE",
+        "returncode": 0,
+        "stdout": "git version 2.54.0.windows.1",
+        "stderr": ""
+      },
+      "user_name_configured": false,
+      "user_email": "yourname@email.com"
+    },
+    "gh": {
+      "cli": {
+        "installed": false,
+        "path": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "Not found on PATH"
+      },
+      "auth_status": {
+        "installed": false,
+        "status": "gh CLI not installed"
+      }
+    },
+    "vercel": {
+      "cli": {
+        "installed": false,
+        "path": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "Not found on PATH"
+      },
+      "auth_status": {
+        "installed": false,
+        "status": "vercel CLI not installed"
+      }
+    },
+    "genlayer_py": {
+      "installed": true,
+      "pip_show": "Name: genlayer-py\nVersion: 0.18.0\nSummary: GenLayer Python SDK\nHome-page: \nAuthor: GenLayer\nAuthor-email: \nLicense-Expression: MIT\nLocation: C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\Lib\\site-packages\nRequires: web3\nRequired-by:",
+      "notes": "genlayer-py 0.18.0 matches StudioNet ConsensusMain 5-arg ABI; 0.19.0rc3 targets Consensus v0.6 methods absent on StudioNet. Installed --no-deps alongside eth-account==0.14.0 because ckzg lacks Python 3.15 win_amd64 wheels."
+    },
+    "genlayerjs": {
+      "installed_globally": false,
+      "npm_package_genlayerjs": "404 Not Found on npm registry; official package is genlayer-js",
+      "npm_view_genlayer_js": {
+        "installed": true,
+        "path": "C:\\Program Files\\nodejs\\npm.CMD",
+        "returncode": null,
+        "stdout": "",
+        "stderr": "TimeoutExpired(['C:\\\\Program Files\\\\nodejs\\\\npm.CMD', 'view', 'genlayer-js', 'dist-tags', '--json'], 15)"
+      }
+    },
+    "pytest": {
+      "cli_on_path": {
+        "installed": false,
+        "path": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "Not found on PATH"
+      },
+      "python_module": {
+        "installed": true,
+        "path": "C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\python.exe",
+        "returncode": 0,
+        "stdout": "pytest 9.2.0",
+        "stderr": ""
+      },
+      "pip_show": "Name: pytest\nVersion: 9.2.0\nSummary: pytest: simple powerful testing with Python\nHome-page: https://docs.pytest.org/en/latest/\nAuthor: Brianna Laugher, Bruno Oliveira, Floris Bruynooghe, Freya Bruhin, Holger Krekel, Others (See AUTHORS), Ronny Pfannschmidt\nAuthor-email: \nLicense-Expression: MIT\nLocation: C:\\Users\\user\\AntigravityProfiles\\account2\\AppData\\Local\\Python\\pythoncore-3.15-64\\Lib\\site-packages\nRequires: colorama, iniconfig, packaging, pluggy, pygments\nRequired-by:"
+    },
+    "gltest": {
+      "cli_on_path": {
+        "installed": false,
+        "path": null,
+        "returncode": null,
+        "stdout": "",
+        "stderr": "Not found on PATH"
+      },
+      "pip_show_genlayer_test": false
+    }
+  },
+  "studionet": {
+    "chain_id_hex": "0xf22f",
+    "chain_id_int": 61999,
+    "net_version": "61999",
+    "rpc_url": "https://studio.genlayer.com/api",
+    "explorer_url": "https://explorer-studio.genlayer.com",
+    "explorer_http_status": 200,
+    "explorer_body_bytes": 45911,
+    "eth_blockNumber": "0x6af8bc77",
+    "eth_gasPrice": "0x0",
+    "latest_block_baseFeePerGas": "0x0",
+    "consensus_main": {
+      "address": "0x0000000000000000000000000000000000000000",
+      "addTransaction_inputs": [
+        "_sender:address",
+        "_recipient:address",
+        "_numOfInitialValidators:uint256",
+        "_maxRotations:uint256",
+        "_txData:bytes"
+      ],
+      "addTransaction_stateMutability": "nonpayable"
+    },
+    "unsupported_v06_probes": {
+      "FeeManager": {
+        "code": -32001,
+        "message": "Contract FeeManager not found",
+        "data": {
+          "contract_name": "FeeManager"
+        }
+      },
+      "gen_getTransactionLifecycle": {
+        "code": -32601,
+        "message": "Method not found: gen_getTransactionLifecycle"
+      }
+    },
+    "runner_hash": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+    "schema_verification": {
+      "jsonrpc": "2.0",
+      "result": {
+        "ctor": {
+          "params": [],
+          "kwparams": {}
+        },
+        "methods": {
+          "get_last_result": {
+            "params": [],
+            "kwparams": {},
+            "readonly": true,
+            "ret": "string"
+          },
+          "get_probe_count": {
+            "params": [],
+            "kwparams": {},
+            "readonly": true,
+            "ret": "int"
+          },
+          "get_result": {
+            "params": [
+              [
+                "url",
+                "string"
+              ]
+            ],
+            "kwparams": {},
+            "readonly": true,
+            "ret": "string"
+          },
+          "probe_url": {
+            "params": [
+              [
+                "url",
+                "string"
+              ]
+            ],
+            "kwparams": {},
+            "readonly": false,
+            "ret": "string",
+            "payable": false
+          }
+        }
+      },
+      "id": 1
+    }
+  },
+  "probe_contract": {
+    "path": "C:\\Users\\user\\AntigravityProfiles\\account2\\.gemini\\antigravity\\scratch\\public-muse\\contracts\\evidence_probe.py",
+    "address": "0xaDDb04fF7a81076eda9D84f1ddEf7aDd74bB6CA9",
+    "deployer": "0x9dbFf70bEc1f1A97CF19379eF9657E9c044fC0d2",
+    "writer_account": "0x9B3bFEBd0B9E4F91C867b44e36256fbE7970359F",
+    "writer_balance_before_hex": "0x0",
+    "runner_hash": "py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6",
+    "tx_id": "0xf1eb0c76dedefa6e5011b3de4bb12dc713442fe175382a611a7dbb60e120472b",
+    "status": "FINALIZED",
+    "result": 6,
+    "result_name": "MAJORITY_AGREE",
+    "leader_execution_result": "SUCCESS",
+    "leader_genvm_result": {
+      "stderr": "",
+      "stdout": "",
+      "raw_error": null,
+      "error_code": null,
+      "error_description": null
+    },
+    "validator_votes_name": [
+      "AGREE",
+      "IDLE",
+      "AGREE",
+      "AGREE",
+      "IDLE"
+    ],
+    "probe_count": 5,
+    "last_result": {
+      "extracted_len": 505,
+      "probe_count": 5,
+      "raw_len": 555,
+      "sha256": "f6e4c7b222d739f221382b2f277d74bd6fa19e84e1e54d965725f6e3957d8482",
+      "status_code": 200,
+      "text_preview": "# v0.3.0\n# { \"Depends\": \"py-genlayer:9b8kjyda2ycxyq4ea6g4yfpnydxhd52gqba5rb8dw7krkh5mn9p0\" }\n\nimport genlayer as gl\n\n# contract class\nclass Storage(gl.contract.Contract):\n storage: str\n\n # constructor\n def __init__(self, initial_storage: str):\n self.storage = initial_storage\n\n # read methods must be",
+      "url": "https://raw.githubusercontent.com/genlayerlabs/genlayer-studio/c94072951e483510329670aa427fba3fa6944f45/examples/contracts/storage.py"
+    }
+  },
+  "evidence_probes": [
+    {
+      "key": "wikipedia_ruby_slippers_lead",
+      "purpose": "primary_supporting_evidence",
+      "title": "Ruby slippers (Wikipedia revision 1384457883, section 0)",
+      "revision_or_commit": "oldid=1384457883",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1384457883&prop=wikitext&section=0&format=json",
+      "tx_id": "0x47e290f910a6cd92d5f66075c964f644f0771fd0de4eb3c0dbd3d08b3c3fec1a",
+      "reused_existing_onchain_probe": true,
+      "tx_summary": {
+        "tx_id": "0x47e290f910a6cd92d5f66075c964f644f0771fd0de4eb3c0dbd3d08b3c3fec1a",
+        "status": "FINALIZED",
+        "result": 6,
+        "result_name": "MAJORITY_AGREE",
+        "leader_execution_result": "SUCCESS",
+        "leader_genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null
+        },
+        "validator_votes_name": [
+          "AGREE",
+          "IDLE",
+          "AGREE",
+          "IDLE",
+          "AGREE"
+        ]
+      },
+      "onchain_status_code": 200,
+      "onchain_raw_len": 4061,
+      "onchain_extracted_len": 1578,
+      "onchain_sha256": "ef933b72da3ef4fef9c986f918e5aa6f3661091dcf8150d28b66a34d16cec1e0",
+      "local_sha256": "ef933b72da3ef4fef9c986f918e5aa6f3661091dcf8150d28b66a34d16cec1e0",
+      "sha256_matches_local": true,
+      "text_matches_local": true,
+      "text_preview": "Ruby slippers\n\n{{Short description|Magical shoes in The Wizard of Oz}}\n{{For|the Once Upon a Time episode|Ruby Slippers (Once Upon a Time)}}\n{{Infobox fictional artifact\n|name = Ruby slippers\n|image = Ruby slippers.JPG\n|imagesize =\n|caption = One of the pairs used in The Wizard of Oz (1939), on disp",
+      "matched_excerpt": "ldwyn-Mayer\n|first = The Wizard of Oz\n|first_type =\n|date = 1939\n|creator = Gilbert Adrian (costume design)\n|based_on = Silver Shoes by Frank Baum\n|type = Magical slippers\n|genre = Fantasy\n|uses =\n|owner = Wicked Witch of the East (formerly)<br>Dorothy Gale\n* Ability to send Dorothy back home to Kansas\n* Protect the wearer\n}}\n\nThe ruby sl"
+    },
+    {
+      "key": "wikipedia_silver_shoes_lead",
+      "purpose": "corroborating_supporting_evidence",
+      "title": "Silver Shoes (Wikipedia revision 1378659855, section 0)",
+      "revision_or_commit": "oldid=1378659855",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1378659855&prop=wikitext&section=0&format=json",
+      "tx_id": "0x7c62e3ff5603dd13a4c92f7834e3b72c4ae24a3db32aef66a2f12b45dcf1f2f2",
+      "reused_existing_onchain_probe": false,
+      "tx_summary": {
+        "tx_id": "0x7c62e3ff5603dd13a4c92f7834e3b72c4ae24a3db32aef66a2f12b45dcf1f2f2",
+        "status": "FINALIZED",
+        "result": 6,
+        "result_name": "MAJORITY_AGREE",
+        "leader_execution_result": "SUCCESS",
+        "leader_genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null
+        },
+        "validator_votes_name": [
+          "IDLE",
+          "IDLE",
+          "AGREE",
+          "AGREE",
+          "AGREE"
+        ]
+      },
+      "onchain_status_code": 200,
+      "onchain_raw_len": 1727,
+      "onchain_extracted_len": 1113,
+      "onchain_sha256": "f4804db309f9f5ce0dcb0e9d3f9b51bb6713f17e2d3da2234616c22c02a34523",
+      "local_sha256": "f4804db309f9f5ce0dcb0e9d3f9b51bb6713f17e2d3da2234616c22c02a34523",
+      "sha256_matches_local": true,
+      "text_matches_local": true,
+      "text_preview": "Silver Shoes\n\n{{short description|Magical shoes in L. Frank Baum's novel, The Wonderful Wizard of Oz}}\n{{one source|date=November 2024}}\n{{Infobox fictional artifact\n| name = Silver Shoes\n| image = Dorothy Gale with silver shoes.jpg\n| imagesize = 250\n| caption = Illustration by W. W. Denslow in The ",
+      "matched_excerpt": "Silver Shoes\n\n{{short description|Magical shoes in L. Frank Baum's novel, The Wonderful Wizard of Oz}}\n{{one source|date=November 2024}}\n{{Infobox fictional artifact\n| name = Silver Shoes\n| image = Dorothy Gale with silv"
+    },
+    {
+      "key": "wikipedia_wonderful_wizard_of_oz_plot",
+      "purpose": "primary_novel_plot_evidence",
+      "title": "The Wonderful Wizard of Oz (Wikipedia revision 1384221642, section 2 Plot)",
+      "revision_or_commit": "oldid=1384221642",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1384221642&prop=wikitext&section=2&format=json",
+      "tx_id": "0xa7c5104d8d4036885c73050980739c5a4aa4f1f82c8421c634bc5823fb2932f3",
+      "reused_existing_onchain_probe": false,
+      "tx_summary": {
+        "tx_id": "0xa7c5104d8d4036885c73050980739c5a4aa4f1f82c8421c634bc5823fb2932f3",
+        "status": "FINALIZED",
+        "result": 6,
+        "result_name": "MAJORITY_AGREE",
+        "leader_execution_result": "SUCCESS",
+        "leader_genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null
+        },
+        "validator_votes_name": [
+          "IDLE",
+          "AGREE",
+          "AGREE",
+          "IDLE",
+          "AGREE"
+        ]
+      },
+      "onchain_status_code": 200,
+      "onchain_raw_len": 6670,
+      "onchain_extracted_len": 2500,
+      "onchain_sha256": "daa31e60d934fe443a16a4c037fc9c10356e52884d6cbfc2cfd3ad72145097e0",
+      "local_sha256": "daa31e60d934fe443a16a4c037fc9c10356e52884d6cbfc2cfd3ad72145097e0",
+      "sha256_matches_local": true,
+      "text_matches_local": true,
+      "text_preview": "The Wonderful Wizard of Oz\n\n== Plot ==\nthumb|right|upright=0.8|Dorothy catches Toto by the ear as their house is caught up in a cyclone (tornado). First edition illustration by [[W. W. Denslow.]]\nDorothy Gale is a young girl who lives with her Aunt Em, Uncle Henry, and dog, Toto, on a farm on the Ka",
+      "matched_excerpt": "ruler of the Munchkins. The Good Witch of the North arrives with three grateful Munchkins and gives Dorothy the magical silver shoes that originally belonged to the Wicked Witch. The Good Witch tells Dorothy that the only way she can return home to Kansas is to follow the yellow brick road to the Emerald City and ask the great and powerfu"
+    },
+    {
+      "key": "wikipedia_steam_locomotive_lead",
+      "purpose": "insufficient_evidence_unrelated",
+      "title": "Steam locomotive (Wikipedia revision 1380178024, section 0)",
+      "revision_or_commit": "oldid=1380178024",
+      "url": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1380178024&prop=wikitext&section=0&format=json",
+      "tx_id": "0x29d4fcdb0e3ac03c07812fc6c416dc064df796fe1db1d5c69176d4d17cfdc31a",
+      "reused_existing_onchain_probe": false,
+      "tx_summary": {
+        "tx_id": "0x29d4fcdb0e3ac03c07812fc6c416dc064df796fe1db1d5c69176d4d17cfdc31a",
+        "status": "FINALIZED",
+        "result": 6,
+        "result_name": "MAJORITY_AGREE",
+        "leader_execution_result": "SUCCESS",
+        "leader_genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null
+        },
+        "validator_votes_name": [
+          "AGREE",
+          "IDLE",
+          "AGREE",
+          "AGREE",
+          "IDLE"
+        ]
+      },
+      "onchain_status_code": 200,
+      "onchain_raw_len": 7275,
+      "onchain_extracted_len": 2500,
+      "onchain_sha256": "51dad15bb97283584c3e84d00dece5e2a4dcdce06f16c383240f7070d0972672",
+      "local_sha256": "51dad15bb97283584c3e84d00dece5e2a4dcdce06f16c383240f7070d0972672",
+      "sha256_matches_local": true,
+      "text_matches_local": true,
+      "text_preview": "Steam locomotive\n\n{{Short description|Railway locomotive powered by a steam engine}}\n{{use dmy dates|date=July 2017}}\nthumb|[[LNER Class A4 4468 Mallard|LNER Class A4 4468 Mallard is officially the fastest steam locomotive, reaching {{convert|126|mph|km/h|abbr=on}} on 3 July 1938.]]\nthumb|J\u017d 06-018 ",
+      "matched_excerpt": null
+    },
+    {
+      "key": "github_raw_genlayer_storage_py",
+      "purpose": "github_raw_connectivity",
+      "title": "genlayerlabs/genlayer-studio examples/contracts/storage.py (commit-pinned)",
+      "revision_or_commit": "c94072951e483510329670aa427fba3fa6944f45",
+      "url": "https://raw.githubusercontent.com/genlayerlabs/genlayer-studio/c94072951e483510329670aa427fba3fa6944f45/examples/contracts/storage.py",
+      "tx_id": "0x85e50ca330784f48fba33584e2cfb4d733af091ee1753a8b6dcb9e19fdeb0107",
+      "reused_existing_onchain_probe": false,
+      "tx_summary": {
+        "tx_id": "0x85e50ca330784f48fba33584e2cfb4d733af091ee1753a8b6dcb9e19fdeb0107",
+        "status": "FINALIZED",
+        "result": 6,
+        "result_name": "MAJORITY_AGREE",
+        "leader_execution_result": "SUCCESS",
+        "leader_genvm_result": {
+          "stderr": "",
+          "stdout": "",
+          "raw_error": null,
+          "error_code": null,
+          "error_description": null
+        },
+        "validator_votes_name": [
+          "AGREE",
+          "AGREE",
+          "AGREE",
+          "IDLE",
+          "IDLE"
+        ]
+      },
+      "onchain_status_code": 200,
+      "onchain_raw_len": 555,
+      "onchain_extracted_len": 505,
+      "onchain_sha256": "f6e4c7b222d739f221382b2f277d74bd6fa19e84e1e54d965725f6e3957d8482",
+      "local_sha256": "f6e4c7b222d739f221382b2f277d74bd6fa19e84e1e54d965725f6e3957d8482",
+      "sha256_matches_local": true,
+      "text_matches_local": true,
+      "text_preview": "# v0.3.0\n# { \"Depends\": \"py-genlayer:9b8kjyda2ycxyq4ea6g4yfpnydxhd52gqba5rb8dw7krkh5mn9p0\" }\n\nimport genlayer as gl\n\n# contract class\nclass Storage(gl.contract.Contract):\n storage: str\n\n # constructor\n def __init__(self, initial_storage: str):\n self.storage = initial_storage\n\n # read methods must be",
+      "matched_excerpt": null
+    }
+  ],
+  "pending_transactions": {}
+}
